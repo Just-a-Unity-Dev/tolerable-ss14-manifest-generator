@@ -146,7 +146,7 @@ async def tryupdatewatchdog():
 if apitoken is None:
     print("Unable to update watchdog instance!")
 else:
-	tryupdatewatchdog()
+    tryupdatewatchdog()
 
 # 151 lines of code. but at last i made it tolerable
 # v0.1 originally made by daemon, however it was really
