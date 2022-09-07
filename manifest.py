@@ -65,15 +65,15 @@ for file in path.glob('*.zip'):
         print(file.name + " " + sha256_hash.hexdigest())
 		# Me when no switch statement in python
         if file.name == "SS14.Server_linux-arm64.zip":
-            zips.linuxarm64 = sha256_hash.hexdigest().upper()
+            zips["linuxarm64"] = sha256_hash.hexdigest().upper()
         elif file.name == "SS14.Server_linux-x64.zip":
-            zips.linuxx64 = sha256_hash.hexdigest().upper()
+            zips["linuxx64"] = sha256_hash.hexdigest().upper()
         elif file.name == "SS14.Server_osx-x64.zip":
-            zips.osxx64 = sha256_hash.hexdigest().upper()
+            zips["osxx64"] = sha256_hash.hexdigest().upper()
         elif file.name == "SS14.Server_win-x64.zip":
-            zips.winx64 = sha256_hash.hexdigest().upper()
+            zips["winx64"] = sha256_hash.hexdigest().upper()
         elif file.name == "SS14.Client.zip":
-            zips.client = sha256_hash.hexdigest().upper()
+            zips["client"] = sha256_hash.hexdigest().upper()
         print(f"Finished hashing {file.name}!")
 
 print("All files hashed!")
@@ -84,27 +84,27 @@ data = f"""{{
     "{arguments.version}": {{
       "server": {{
         "win-x64": {{
-          "sha256": "{zips.winx64}",
+          "sha256": "{zip["winx64"]}",
           "url": "{buildurl}/SS14.Server_win-x64.zip"
         }},
         "linux-arm64": {{
-          "sha256": "{zips.linuxarm64}",
+          "sha256": "{zips["linuxarm64"]}",
           "url": "{buildurl}/SS14.Server_linux-arm64.zip"
         }},
         "osx-x64": {{
-          "sha256": "{zips.osxx64}",
+          "sha256": "{zips["osxx64"]}",
           "url": "{buildurl}/SS14.Server_osx-x64.zip"
         }},
         "linux-x64": {{
-          "sha256": "{zips.linuxx64}",
+          "sha256": "{zips["linuxx64"]}",
           "url": "{buildurl}/SS14.Server_linux-x64.zip"
         }}
       }},
       "time": "{TIME}",
-      "client": {
-        "sha256": "{zips.client}",
+      "client": {{
+        "sha256": "{zips["client"]}",
         "url": "{buildurl}/SS14.Client.zip"
-      }
+      }}
     }}
   }}
 }}"""
