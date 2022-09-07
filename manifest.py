@@ -84,7 +84,7 @@ data = f"""{{
     "{arguments.version}": {{
       "server": {{
         "win-x64": {{
-          "sha256": "{zip["winx64"]}",
+          "sha256": "{zips["winx64"]}",
           "url": "{buildurl}/SS14.Server_win-x64.zip"
         }},
         "linux-arm64": {{
@@ -118,28 +118,15 @@ print("Manifest wrote!")
 
 async def tryupdatewatchdog():
     try:
-        # I stole this from MoMMI code lmao
-        # Tweaked it a bit, however
-        
+        # Some stuff stolen from MoMMIv2 code
         url = watchdogurl + f"/instances/{instance}/update"
         authHeader = "Basic " + base64.b64encode(f"{instance}:{apitoken}".encode("ASCII")).decode("ASCII")
         
-        async with aiohttp.ClientSession() as session:
-            async def load():
-                async with session.post(url, headers={"Authorization": authHeader}) as resp:
-                    if resp.status != 200:
-                        print("Wrong status code: {resp.status}")
-                        return
-            await asyncio.wait_for(load(), timeout=5)
-            
-    except asyncio.TimeoutError:
-        print("Server timed out while attempting to update watchdog")
-        return
+        os.system(f"curl -X POST -H 'Authorization: {authHeader}' \"{url}\"")
+        print("Updated watchdog (or tried to)!")
     except:
         print("An unknown error occured.")
         return
-
-    print("Updated watchdog!")
 
 if apitoken is None:
     print("Unable to update watchdog instance!")
