@@ -8,8 +8,6 @@ from pathlib import Path
 import argparse
 import datetime
 import hashlib
-import asyncio
-import aiohttp
 import base64
 import os
 
