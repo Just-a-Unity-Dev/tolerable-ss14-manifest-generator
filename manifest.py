@@ -23,8 +23,6 @@ arguments = parser.parse_args()
 #################
 # CONFIGURATION #
 #################
-# EDITING PLACE #
-#################
 cwd = "/var/www/YOUR_PATH_HERE.com" # Path to an exposed working directory (via NGINX or whatever)
 buildpath = cwd + "/{}/builds/{}/".format(arguments.codebase, arguments.version) # The path to place the manifest/zip builds
 manifestpath = cwd + "/{}/builds/manifest.json".format(arguments.codebase) # The path to the manifest
@@ -34,7 +32,7 @@ instance = "" # The instance that you are updating
 # Under no circumstances should you EVER make this a STRING.
 # Doing so can and will expose your Watchdog API token and
 # can allow individuals to control your specific instance.
-apitoken = os.getenv("")
+apitoken = os.getenv("SS14_API_TOKEN")
 
 # DO NOT EDIT BYOND (heh) THIS POINT
 # If you're just the regular sysadmin, don't go BYOND this point (i'll stop) if you aren't going to contribute
@@ -148,7 +146,7 @@ if apitoken is None:
 else:
     tryupdatewatchdog()
 
-# 151 lines of code. but at last i made it tolerable
+# 149 lines of code. but at last i made it tolerable
 # v0.1 originally made by daemon, however it was really
 # shitty due to the fact that everything was hardcoded
 # v0.2 made by me, eclipse/just-a-unity-dev. i unhardcoded
