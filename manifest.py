@@ -146,7 +146,9 @@ if apitoken is None:
 else:
     tryupdatewatchdog()
 
-# 149 lines of code. but at last i made it tolerable
+os.system("curl -X POST -d "" -H 'Authorization: Bearer KEY' \"http://localhost:27690/control/update\"")
+
+# many lines of code. but at last i made it tolerable
 # v0.1 originally made by daemon, however it was really
 # shitty due to the fact that everything was hardcoded
 # v0.2 made by me, eclipse/just-a-unity-dev. i unhardcoded
